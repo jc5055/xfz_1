@@ -1,0 +1,55 @@
+
+
+{% extends 'base/front_base.html' %}
+
+{% load payinfo_filters %}
+{% block title %}
+    企业服务
+{% endblock %}
+{% block header %}
+    <link rel="stylesheet" href="{% static 'css/payinfo/payinfo.min.css' %}">
+    <script src="{% static 'js/index.min.js' %}"></script>
+{% endblock %}
+{% block main %}
+
+    <div class="main">
+        <div class="wrapper">
+            <div class="main-content-wrapper">
+                <div class="advice-group">
+                    <a href="#">
+                        <img src="http://www.xfz.cn/static/build/images/web-venture-banner.png" alt="">
+                    </a>
+                </div>
+
+                <ul class="document-list">
+                    {% for payInfo in payInfos %}
+                        <li>
+                            {% with payInfo|is_buyed:user as buyed %}
+                                {% if buyed %}
+                                    <a href="{% url 'payInfo:download' %}?payinfo_id={{ payInfo.pk }}">
+                                {% else %}
+                                    <a href="{% url 'payInfo:payinfo_order' %}?payinfo_id={{ payInfo.pk }}">
+                                {% endif %}
+
+                            <div class="category-group"></div>
+                            <div class="document-info">
+                                <p class="document-title">{{ payInfo.title }}</p>
+                                <p class="document-desc">{{ payInfo.profile }}</p>
+                                {% if buyed %}
+                                    <p class="document-price">点击下载</p>
+                                {% else %}
+                                    <p class="document-price">￥{{ payInfo.price }}</p>
+                                {% endif %}
+
+                            </div>
+                            </a>
+                            {% endwith %}
+                        </li>
+                    {% endfor %}
+                </ul>
+
+            </div>
+            {% include 'common/sidebar.html' %}
+        </div>
+    </div>
+{% endblock %}
