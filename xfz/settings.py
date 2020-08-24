@@ -22,9 +22,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '(2dw*p&z@g@l-8fc)t&#!)39byx0!71w3=22*el(i4q&m-@a2='
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', '10.242.237.150']
+ALLOWED_HOSTS = ['127.0.0.1', '10.242.237.150', '39.98.154.174']
 
 # Application definition
 
@@ -144,6 +144,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'front', 'dist'),
 ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_dist')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
