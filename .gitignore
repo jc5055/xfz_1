@@ -2,3 +2,4 @@ front/src
 front/node_modules
 whoosh_index
 *.pyc
+static_dist/
